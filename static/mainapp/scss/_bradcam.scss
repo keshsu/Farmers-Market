@@ -1,0 +1,90 @@
+.bradcam_bg_1 {
+  background-image: url(../img/banner/bradcam.png);
+}
+.bradcam_bg_2 {
+  background-image: url(../img/banner/bradcam2.png);
+}
+.bradcam_bg_3 {
+  background-image: url(../img/banner/bradcam3.png);
+}
+.bradcam_bg_4 {
+  background-image: url(../img/banner/details.png);
+}
+.bradcam_area {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  
+  @media #{$tablet_device} {
+    height: 250px;
+  }
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#001d38+0,1a0d01+100&0.7+0,0.6+100 */
+    background: -moz-linear-gradient(
+      left,
+      rgba(0, 29, 56, 0.7) 0%,
+      rgba(26, 13, 1, 0.6) 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+      left,
+      rgba(0, 29, 56, 0.7) 0%,
+      rgba(26, 13, 1, 0.6) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+      to right,
+      rgba(0, 29, 56, 0.7) 0%,
+      rgba(26, 13, 1, 0.6) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3001d38', endColorstr='#991a0d01',GradientType=1 ); /* IE6-9 */
+    z-index: -1;
+    content: "";
+  }
+  @media #{$mobile_device} {
+    height: 200px;
+  }
+  h3 {
+    font-size: 70px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    @media #{$mobile_device} {
+      font-size: 30px;
+    }
+  }
+  p {
+    font-size: 16px;
+    color: $white_color;
+    font-weight: 400;
+    text-transform: capitalize;
+    a {
+      color: $white_color;
+      &:hover {
+        color: $white_color;
+      }
+    }
+  }
+  .bradcam_text2 {
+    h3 {
+      font-size: 50px;
+      margin-bottom: 14px;
+      @media #{$mobile_device} {
+        font-size: 30px;
+      }
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+  }
+}

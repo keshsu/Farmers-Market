@@ -1,0 +1,20 @@
+.our-partners-section{
+  background: $white_color;
+  padding: 20px 0;
+  .partner_slider {
+    .item {
+      display: flex;
+      align-items: center;
+      
+      .image-wrapper {
+        height: 135px;
+        overflow: hidden;
+        margin: auto;
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

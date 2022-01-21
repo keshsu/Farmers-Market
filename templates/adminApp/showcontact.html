@@ -1,0 +1,62 @@
+{% extends 'adminApp/basic.html' %}
+<div id="main-wrapper">
+  {% block body %}
+  <!-- Page wrapper  -->
+  <div class="page-wrapper">
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+      <!-- Start Page Content -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">All Order</h4>
+          <div class="table-responsive m-t-40">
+            <table id="myTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Message ID</th>
+
+                  <th>Send By</th>
+
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for a in contacts %}
+                <tr>
+                  <td>{{a.id}}</td>
+                  <td>{{a.name}}</td>
+                  <td>
+                    <a
+                      href="{% url 'viewContact' a.id %}"
+                      class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                      title="View Order"
+                    >
+                      <i class="fa fa-info"></i
+                    ></a>
+                    <a href="{% url 'deleteContact' a.id %}"
+                      ><button
+                        class="btn btn-danger btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                        title="Delete Order"
+                        onclick="return ask()"
+                      >
+                        <i class="fa fa-trash"></i></button
+                    ></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End PAge Content -->
+<script>
+  function ask() {
+    return confirm("Are you sure you want to delete this product ? ");
+  }
+</script>
+<!-- End Container fluid  -->
+{% endblock body %}

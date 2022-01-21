@@ -1,0 +1,76 @@
+.steps-slider {
+  background: #89b085;
+}
+.item-steps {
+  position: relative;
+  padding: 1em;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.02);
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    width: 50%;
+    pointer-events: none;
+  }
+  &:hover {
+    .steps-count {
+      opacity: 1;
+      transform: translateY(-120px);
+    }
+    .main-title {
+      opacity: 1;
+      transform: translateY(-50px);
+    }
+    .sub-title {
+      opacity: 1;
+      transform: translateY(-50px);
+    }
+    .steps-image {
+      opacity: 1;
+    }
+  }
+  .main-title {
+    position: relative;
+    font-size: 1.9em;
+    color: $white_color;
+    z-index: 2;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    transition: 0.5s;
+  }
+  .sub-title {
+    position: relative;
+    color: $white_color;
+    opacity: 0.5;
+    transition: 0.5s;
+  }
+}
+.text-body {
+  padding: 30px;
+  text-align: center;
+}
+.steps-count {
+  position: absolute;
+  font-size: 4em;
+  right: 30px;
+  color: $white_color;
+  font-weight: 700;
+  z-index: 1;
+  opacity: 0.1;
+  transition: 0.5s;
+}
+.steps-image {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 1;
+  width: 200px;
+  bottom: 0;
+}

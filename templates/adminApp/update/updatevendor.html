@@ -1,0 +1,92 @@
+{% extends 'adminApp/basic.html' %}
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+    {% block body %}
+    <!-- Page wrapper  -->
+    <div class="page-wrapper">
+        <!-- Container fluid  -->
+        <div class="container-fluid">
+            <!-- Start Page Content -->
+     
+            <div class="col-lg-12">
+                <div class="card card-outline-primary">
+                    <div class="card-header">
+                        <h4 class="m-b-0 text-white">Add Vendor</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action='' method='post' enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-body">
+                                <hr>
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Vendor Name</label><sup>*</sup>
+                                            <input type="text" name="name" class="form-control" placeholder="John doe"
+                                                required value="{{vendor.name}}">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Bussiness E-mail</label>
+                                            <input type="text" name="email" class="form-control form-control-danger"
+                                                placeholder="example@gmail.com" value="{{vendor.email}}">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Phone </label><sup>*</sup>
+                                            <input type="text" name="phone" class="form-control" placeholder="98xxxxxxx"
+                                                required value="{{vendor.phone}}">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                   
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                   
+                                    <!--/span-->
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Image</label><sup>*</sup>
+                                            <input type="file" name="file" id="lastName"
+                                                class="form-control form-control-danger" placeholder="12n">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-12 ">
+                                        <div class="form-group">
+                                            <label class="control-label">Vendor Address</label><sup>*</sup>
+                                            <textarea name="address" type="text" style="height:100px;"
+                                                class="form-control">{{vendor.address}}</textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="form-actions">
+                                <input type="submit" name="submit" class="btn btn-success" value="save">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+</div>
+<!-- End Container fluid  -->
+{% endblock body %}

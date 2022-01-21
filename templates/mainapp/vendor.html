@@ -1,0 +1,99 @@
+{% extends 'mainapp/basic.html' %} {% block body %}
+
+<!-- bradcam_area  -->
+<div
+  class="bradcam_area bradcam_bg_2"
+  style="background-image: url({{ci.image.url}});"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text">
+          <h3>Our Products</h3>
+          <p>Shop your products for the better life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ bradcam_area  -->
+
+<div class="vendor_wrapper py-4">
+  <!-- menu start -->
+  <div class="delicious_area pt-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 text-center overflow-hidden">
+          <div class="section_title mb-75">
+            <h3>{{vendor.name}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for product in items %}
+        <div class="col-sm-12 col-lg-12 col-xl-3 col-md-3 mb-4">
+          <div class="single_delicious">
+            <div class="thumb">
+              <img src="/media/{{product.image}}" alt="" />
+            </div>
+            <div class="single_delicious_content">
+              <div class="info">
+                <a href="{% url 'vendor' product.vendor.id %}" class="vendor-tag"
+                  ><i class="fa fa-tag pr-1"></i>{{ product.vendor|title }}</a
+                >
+                <h3>{{product.dish_name}}</h3>
+              </div>
+              <div class="price-button-wrapper">
+                <span>Rs.{{product.price}}</span>
+                {% if product.outofstock %}
+                <button class="boxed-btn outof-stock-btn">Out of Stock</button>
+                {% else %}
+                <button
+                  class="boxed-btn rounded"
+                  onclick="addToCart('{{product.id}}','yes');"
+                >
+                  Add<i class="fa fa-shopping-cart"></i>
+                </button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- menu end -->
+  
+  <div class="container text-center">
+    <div class="pagination_links">
+        <ul class="list-unstyled d-inline" id="paginations">
+            {% if page_obj.has_previous %}
+            <li class="m-1">
+            <a
+                href="?page={{page_obj.previous_page_number}}"
+                class="prev btn-mastery form-control"
+                >Prev</a
+            >
+            </li>
+            {% endif %} {% for i in paginator.page_range %}
+            <li
+            class="block no-{{i}} m-1 {% if page_num == i %}active-page{% endif %}"
+            >
+            <a href="?page={{ i }}" class="form-control">{{i}}</a>
+            </li>
+            {% endfor %} {% if page_obj.has_next %}
+            <li class="m-1">
+            <a
+                href="?page={{page_obj.next_page_number}}"
+                class="next btn-mastery form-control"
+                >Next</a
+            >
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+  </div>  
+</div>
+
+{% endblock body %}

@@ -1,0 +1,38 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% load static %}
+
+{% block body %}
+<div class="container-fluid login-container">
+  <div class="login-wrapper">
+    <div class="row">
+      <div class="login-frame-container overlay col-sm-12 col-md-6 p-0">
+        <img
+          src="{% static 'mainapp/img/gallery/farmer2.jpg' %}"
+          alt="Logion Frame Image container"
+        />
+      </div>
+      <div class="login-form-wrapper col-sm-12 col-md-6">
+    <h1 class="title-text">{% trans "Sign Up" %}</h1>
+
+    <p>{% blocktrans %}Already have an account? <br>
+      <a href="{{ login_url }}" style="text-decoration: underline;">Sign In</a> here.{% endblocktrans %}
+    </p>
+
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <div class="form-group text-center">
+        <button type="submit" class="boxed-btn3">{% trans "Sign Up" %} &raquo;</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

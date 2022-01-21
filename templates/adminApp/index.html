@@ -1,0 +1,169 @@
+{% extends 'adminApp/basic.html' %}
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+  {% block body %}
+  <!-- Page wrapper  -->
+  <div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+        <h3 class="plasc">Welcome to Admin Dashboard</h3>
+      </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+      <!-- Start Page Content -->
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card p-30">
+            <div class="media">
+              <div class="media-left meida media-middle">
+                <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
+              </div>
+              <div class="media-body media-text-right">
+                <h2>{{v}}</h2>
+                <p class="m-b-0">Vendors</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-30">
+            <div class="media">
+              <div class="media-left meida media-middle">
+                <span
+                  ><i
+                    class="fa fa-cutlery f-s-40 color-success"
+                    aria-hidden="true"
+                  ></i
+                ></span>
+              </div>
+              <div class="media-body media-text-right">
+                <h2>{{p}}</h2>
+                <p class="m-b-0">Products</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-30">
+            <div class="media">
+              <div class="media-left meida media-middle">
+                <span><i class="fa fa-user f-s-40 color-danger"></i></span>
+              </div>
+              <div class="media-body media-text-right">
+                <h2>{{u}}</h2>
+                <p class="m-b-0">Users</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card p-30">
+            <div class="media">
+              <div class="media-left meida media-middle">
+                <span
+                  ><i
+                    class="fa fa-shopping-cart f-s-40 color-dark"
+                    aria-hidden="true"
+                  ></i
+                ></span>
+              </div>
+              <div class="media-body media-text-right">
+                <h2>{{o}}</h2>
+                <p class="m-b-0">Orders</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+      <div class="card card-outline-primary">
+        <div class="card-header">
+          <h4 class="m-b-0 text-white">Todays Order</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive m-t-40">
+            <table id="myTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Date</th>
+                  <th>Username</th>
+                  <th>Items</th>
+                  <th>Contact</th>
+                  <th>Address</th>
+                  <th>Delivery Charge</th>
+                  <th>
+                    Total
+                    <span class="text-muted">(Excluding Delivery Charge)</span>
+                  </th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for a in all %}
+                <tr>
+                  <td>{{a.id}}</td>
+                  <td>{{a.ordered_date}}</td>
+                  <td>{{a.user}}</td>
+                  <td>{{a.item_length}}</td>
+                  <td>{{a.phone}}</td>
+                  <td>{{a.address}}</td>
+                  <td>{{a.delivery_charge}}</td>
+                  <td>{{a.total}}</td>
+                  <td>
+                    {% if a.status == "Pending" %}
+                    <span class="py-1 badge badge-primary">{{a.status}}</span>
+                    {% elif a.status == "rejected" %}
+                    <span class="py-1 badge badge-danger">{{a.status}}</span>
+                    {% elif a.status == "ontheway" %}
+                    <span class="py-1 badge badge-info">{{a.status}}</span>
+                    {% elif a.status == "delivered" %}
+                    <span class="py-1 badge badge-success">{{a.status}}</span>
+                    {% else %}
+                    <span class="py-1 badge badge-secondary">Undefined</span>
+                    {% endif %}
+                  </td>
+
+                  <td>
+                    <a
+                      href="{% url 'updateOrder' a.id %}"
+                      class="btn btn-primary btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                      title="Update Order"
+                    >
+                      <i class="fa fa-save"></i
+                    ></a>
+                    <a
+                      href="{% url 'deleteOrder' a.id %}"
+                      class="btn btn-danger btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                      title="Delete Order"
+                    >
+                      <i class="fa fa-trash"></i
+                    ></a>
+                    <a
+                      href="{% url 'viewOrder' a.id %}"
+                      class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                      title="View Order"
+                    >
+                      <i class="fa fa-info"></i
+                    ></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

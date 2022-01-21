@@ -1,0 +1,66 @@
+/* Login Css */
+.login-container {
+  object-position: center;
+  height: 100vh;
+
+  .login-frame-container {
+      
+      img{
+          height: 100%;
+          object-fit: cover;
+      }
+  }
+  .login-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    min-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+
+    .login-form-wrapper {
+      padding: 2em;
+      .title-text {
+        font-family: "Philosopher", sans-serif;
+        font-size: 60px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        font-weight: 600;
+        line-height: 70px;
+        margin-bottom: 27px;
+        color: #000;
+        @media ($xs_mobile) {
+          font-size: 40px;
+        }
+      }
+      .login-form {
+        margin: 3em 0;
+        @media ($small_mobile) {
+          margin: 1.5em 0;
+        }
+        @media ($xs_mobile) {
+          margin: 1em 0;
+        }
+      }
+    }
+
+    @media #{$large_device} {
+      min-width: 500px;
+    }
+
+    @media #{$mobile_device} {
+      min-width: 400px;
+    }
+
+    @media #{$small_mobile} {
+      min-width: 350px;
+      padding: 0.5em;
+    }
+
+    @media #{$xs_mobile} {
+      min-width: 300px;
+    }
+  }
+}

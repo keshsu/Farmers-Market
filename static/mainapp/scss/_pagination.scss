@@ -1,0 +1,47 @@
+.pagination_links {
+	text-align: center;
+	margin: 50px 0 0 0;
+	display: block;
+	ul {
+		li {
+			margin-right: 5px;
+			display: inline-block;
+			&:last-child {
+				margin-right: 0px;
+			}
+			a {
+				background: #F6F7FB;
+				color: #666;
+				padding: 6px 18px;
+				font-weight: 400;
+				border: 1px solid #e1e1e1;
+				font-size: 16px;
+				border-radius: 0px;
+				i {
+					font-size: 13px;
+				}
+			}
+			&:hover {
+				a {
+					background: #751f5f;
+					color: #fff;
+					border-color: transparent;
+				}
+			}
+		}
+		li.active-page {
+			a {
+				background: #751f5f;
+				color: #fff;
+				border-color: transparent;
+			}
+		}
+	}
+}
+.pagination.center {
+	text-align: center;
+}
+.blog-grids.pagination {
+	margin-top: 50px;
+	text-align: center;
+}

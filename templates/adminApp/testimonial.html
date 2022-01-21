@@ -1,0 +1,125 @@
+{% extends 'adminApp/basic.html' %}
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+    {% block body %}
+    <!-- Page wrapper  -->
+    <div class="page-wrapper">
+        <!-- Container fluid  -->
+        <div class="container-fluid">
+            <!-- Start Page Content -->
+            <div class="card card-outline-primary">
+                <div class="card-header">
+                    <h4 class="m-b-0 text-white">Add Testimonial</h4>
+                </div>
+                <div class="card-body">
+                    <form action='' method='post' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-body">
+                            <hr>
+                            <div class="row p-t-20">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Name</label>
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Morzirella">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Desgination</label>
+                                        <input type="text" name="des" class="form-control"
+                                            placeholder="Morzirella">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group has-danger">
+                                        <label class="control-label">Image</label>
+                                        <input type="file" name="img" id="lastName"
+                                            accept="Image/*"
+                                            class="form-control form-control-danger" 
+                                            placeholder="12n">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-danger">
+                                        <label class="control-label">Description</label>
+                                        <textarea name="description" rows="5" class="form-control"
+                                            placeholder="Morzirella is a ..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Show in mainpage?</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" id="exampleRadios1"
+                                                name="tag" value="0" checked="checked">
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" id="exampleRadios2"
+                                                class="ml-4" name="tag" value="1">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" name="submit" class="btn btn-success" value="save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card card-outline-primary ">
+                <div class="card-header">
+                    <h4 class="m-b-0 text-white">Manage Testimonial</h4>
+                </div>
+                <div class="card-body">
+                    <table id="myTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Desgination</th>
+                                <th>Image</th>
+                                <th>Is visible ?</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in t %}
+                            <tr>
+                                <td>{{a.name}}</td>
+                                <td>{{a.designation}}</td>
+                                <td><img src="/media/{{a.image}}" style="height:100px;width:100px;"></td>
+                                <td>{{a.display}}</td>
+                                <td>
+                                    <a href="{% url 'updatetestimonial' a.id %}">
+                                        <button class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                                            title="Update">
+                                            <i class="fa fa-edit"></i>
+                                    <a href="{% url 'deltestimonial' a.id %}">
+                                        <button class="btn btn-danger btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                                            title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End PAge Content -->
+</div>
+<!-- End Container fluid  -->
+{% endblock body %}

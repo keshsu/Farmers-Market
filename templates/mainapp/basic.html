@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{% block title %} {% endblock title %}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="manifest" href="{% static '/site.webmanifest"> -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static '/mainapp/img/favicon.ico' %}"
+    />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link
+      rel="stylesheet"
+      href="{% static '/mainapp/css/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/mainapp/css/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/mainapp/css/magnific-popup.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/mainapp/css/font-awesome.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/mainapp/css/themify-icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static '/mainapp/css/gijgo.css' %}" />
+    <link rel="stylesheet" href="{% static '/mainapp/css/nice-select.css' %}" />
+    <link rel="stylesheet" href="{% static '/mainapp/css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static '/mainapp/css/slicknav.css' %}" />
+
+    <link rel="stylesheet" href="{% static '/mainapp/css/style.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static '/mainapp//mainapp/css/style.css'%}"> -->
+    <!-- <link rel="stylesheet" href="{% static '/mainapp/css/responsive' %}"> -->
+    <script src="{% static 'mainapp/js/vendor/jquery-1.12.4.min.js' %}"></script>
+  </head>
+
+  <body>
+
+    <!-- header-start -->
+    <header>
+      <div class="header-area">
+        <div id="sticky-header" class="main-header-area">
+          <div class="header-top_area">
+            <div class="container">
+              <div class="header-top_area_container">
+                <div class="logo">
+                  <a href="{% url 'index' %}">
+                    <img
+                      src="{% static '/mainapp/img/full_logo.png' %}"
+                      alt=""
+                    />
+                  </a>
+                </div>
+
+                <div
+                  class="top-navigation main-menu d-none d-lg-block float-right"
+                >
+                  <nav class="shopping" id="top-navigation-cart">
+                    <a href="/cart/cart-detail" class="cart-icon"
+                      ><svg
+                        version="1.1"
+                        class="thb-cart-icon thb-cart-icon-style4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 20 17"
+                        xml:space="preserve"
+                      >
+                        <path
+                          d="M19.5,5.5c-0.4-0.5-1.1-0.8-1.7-0.8h-1.1L14,0.4c-0.3-0.4-0.8-0.6-1.2-0.3c-0.4,0.2-0.6,0.8-0.3,1.2l2.1,3.4H5.4l2.1-3.4
+                            c0.3-0.4,0.1-0.9-0.3-1.2C6.8-0.1,6.2,0,6,0.4L3.3,4.7H2.2C1.6,4.7,0.9,5,0.5,5.5C0.1,6.1-0.1,6.7,0,7.4l1.7,7.9
+                            c0.2,1,1.1,1.7,2.2,1.7h12.2c1.1,0,2-0.7,2.2-1.7L20,7.4C20.1,6.7,19.9,6.1,19.5,5.5z M16.5,14.9c0,0.2-0.2,0.3-0.4,0.3H3.9
+                            c-0.2,0-0.4-0.1-0.4-0.3L1.8,7c0-0.2,0-0.3,0.1-0.4c0-0.1,0.2-0.2,0.4-0.2h15.5c0.2,0,0.3,0.1,0.4,0.2c0,0.1,0.1,0.2,0.1,0.4
+                            L16.5,14.9z M6.3,8C5.8,8,5.4,8.4,5.4,8.9v4c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9v-4C7.2,8.4,6.8,8,6.3,8z M10,8
+                            C9.5,8,9.1,8.4,9.1,8.9v4c0,0.5,0.4,0.9,0.9,0.9s0.9-0.4,0.9-0.9v-4C10.9,8.4,10.5,8,10,8z M13.7,8c-0.5,0-0.9,0.4-0.9,0.9v4
+                            c0,0.5,0.4,0.9,0.9,0.9c0.5,0,0.9-0.4,0.9-0.9v-4C14.6,8.4,14.2,8,13.7,8z"
+                        ></path>
+                      </svg>
+                      <span id="total-cart-count" class="cart-count">
+                        {% block dynamiccart %}{% endblock dynamiccart %}</span
+                      >
+                    </a>
+                    <!-- Shopping Item -->
+                    <div class="shopping-item" id="cart">
+                      <div class="dropdown-cart-header clearfix">
+                        <span id="total-cart-item">0</span>
+                        <a href="/cart/cart-detail">View Cart</a>
+                      </div>
+                      <ul class="shopping-list"></ul>
+                      <div class="bottom">
+                        <div class="total">
+                          <span>Total</span>
+                          <span class="total-amount" id="cart-total-amount"
+                            >0</span
+                          >
+                        </div>
+                        <div id="cart-buttons"></div>
+                      </div>
+                    </div>
+                    <!--/ End Shopping Item -->
+                  </nav>
+                </div>
+              </div>
+            </div>
+            <div class="header-bottom_area">
+              <div class="container">
+                <div class="main-menu d-none d-lg-block">
+                  <nav class="d-flex justify-content-between">
+                    <ul id="navigation">
+                      <li>
+                        <a class="active" href="{% url 'index' %}">home</a>
+                      </li>
+                      <li><a href="/products">Shop</a></li>
+                      <li><a href="{% url 'about' %}">about</a></li>
+                      {% comment %}
+                      <li><a href="{% url 'blogs' %}">blog</a></li>
+                      {% endcomment %}
+                      <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                    <ul id="user-navigation" class="user-nav">
+                      {% if user.is_authenticated%}
+                      <li>
+                        <a href="#"
+                          >Welcome, {{user.username}}
+                          <i class="ti-angle-down"></i
+                        ></a>
+                        <ul class="submenu">
+                          <li><a href="{% url 'myorders' %}">My Orders</a></li>
+                          <li><a href="/accounts/logout/">Logout</a></li>
+                        </ul>
+                      </li>
+                      {% else %}
+                      <li>
+                        <a href="/accounts/login/">Login</a>
+                      </li>
+                      <li>
+                        <a href="/accounts/signup/">Register</a>
+                      </li>
+                      {% endif %}
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="mobile_menu d-block d-lg-none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- header-ends -->
+
+    <main>{% block body %} {% endblock body %}</main>
+    <!-- footer_start  -->
+    <footer class="footer">
+      <div class="footer_top">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-3 col-md-6 col-lg-3">
+              <div class="footer_widget">
+                <h3 class="footer_title">Farmers Market Nepal</h3>
+                <!-- <div class="footer_logo">
+                                <a href="{% static '/#">
+                                    <img src="img/footer_logo.png" alt="">
+                                </a>
+                            </div> -->
+                <p>
+                  Panipokhari, <br />
+                  Opposite to japanese Embassy <br />
+                  <a href="#">+977-9843743004</a> <br />
+                  <a href="#">info@farmersmarketnepal.com</a>
+                </p>
+                <p></p>
+                <div class="socail_links">
+                  <ul>
+                    <li>
+                      <a href="https://www.facebook.com/farmersmarketsnepal">
+                        <i class="ti-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="ti-twitter-alt"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-lg-4 offset-xl-1">
+              <div class="footer_widget">
+                <h3 class="footer_title">Useful Links</h3>
+                <ul>
+                  <li><a href="{% url 'products' %}">Products</a></li>
+                  <li><a href="{% url 'about' %}">About</a></li>
+                  {% comment %}
+                  <li><a href="{% url 'blogs' %}"> Blog</a></li>
+                  {% endcomment %}
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-lg-4">
+              <div class="footer_widget">
+                <h3 class="footer_title">Subscribe</h3>
+                <form action="#" class="newsletter_form">
+                  <input type="text" placeholder="Enter your mail" />
+                  <button type="submit">Subscribe</button>
+                </form>
+                <p class="newsletter_text">
+                  To get updates on new products and ideas on how to prepare and
+                  eat these locally treats.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer_end  -->
+
+    <a href="#" id="scroll" title="Scroll to Top" style="display: none">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+    {% comment %} cart Message {% endcomment %}
+
+    <div class="cart-added-message hide" id="cart-message">
+      <div class="aster">
+        <div class="tick-image">
+          <i class="fa fa-check mr-2"></i>
+        </div>
+        <div class="msg">Item Added</div>
+      </div>
+    </div>
+
+    <!-- JS here -->
+    <script src="{% static 'mainapp/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/popper.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/ajax-form.js' %}"></script>
+    <script src="{% static 'mainapp/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/scrollIt.js' %}"></script>
+    <script src="{% static 'mainapp/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/wow.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/gijgo.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/nice-select.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/plugins.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{% static 'mainapp/js/contact.js' %}"></script>
+    <script src="{% static 'mainapp/js/jquery.form.js' %}"></script>
+    <script src="{% static 'mainapp/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/mail-script.js' %}"></script>
+
+    <!-- Datatables -->
+    <script src="{% static 'mainapp/js/datatables/datatables.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'mainapp/js/datatables/datatables-init.js' %}"></script>
+
+    <script src="{% static 'mainapp/js/paginate.js' %}"></script>
+
+    <script src="{% static 'mainapp/js/cart.js' %}"></script>
+
+    <script src="{% static 'mainapp/js/main.js' %}"></script>
+
+    <script>
+      $("#datepicker").datepicker({
+        iconsLibrary: "fontawesome",
+        icons: {
+          rightIcon: '<span class="fa fa-calendar-o"></span>',
+        },
+      });
+      $("#datepicker2").datepicker({
+        iconsLibrary: "fontawesome",
+        icons: {
+          rightIcon: '<span class="fa fa-calendar-o"></span>',
+        },
+      });
+    </script>
+    <script>
+      Pagination({{ page_num }});
+    </script>
+  </body>
+</html>

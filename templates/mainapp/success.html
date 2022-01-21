@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %} {% endblock title %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="manifest" href="{% static '/site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/mainapp/img/favicon.ico' %}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static '/mainapp/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static '/mainapp/css/slicknav.css' %}">
+
+    <link rel="stylesheet" href="{% static '/mainapp/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static '/mainapp//mainapp/css/style.css'%}"> -->
+    <!-- <link rel="stylesheet" href="{% static '/mainapp/css/responsive' %}"> -->
+</head>
+
+<body>
+    <div class="greeting-card">
+        <div class="special col-6 mx-auto">
+            <h1>Thank you for Ordering from Farmers Market Nepal.
+            </h1>
+            <p>Your order has been placed succesfully...</p>
+        </div>
+    </div>
+    <script>
+    setTimeout(function(){
+        console.log('done')
+        window.location.href= "/"
+    },3000)
+</script>
+</body>
+
+</html>

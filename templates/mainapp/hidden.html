@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{% extends 'base.html' %} {% block content %}
+
+{% if user.username %}
+<p class="text-right text-danger font-weight-bold mr-5">Hello, {{user.username}}</h3>
+    {% endif %}
+<h2 class="text-center">{{object.title}}</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 bg-dark text-white">
+            <h4>{{object.get_category_display}}</h4>
+            {% if object.label and object.dealtext %}
+            <br><span
+                style="background-color:{{object.get_label_display}};padding:5px;color:white; ">{{object.dealtext}}</span>
+            {% endif %}
+            <div class="row mt-4">
+                <div class="col-6">
+                    <img src="/media/{{ object.image }}" style="width:300px;height:200px;" class="img-responsive" />
+                </div>
+                <div class="col-6">
+                    <p class="lead">{{object.product_description}}</p>
+                </div>
+            </div>
+            <center> <button class="btn btn-danger m-5">Price :
+                    {% if object.discounted_price %}
+                    <strike>{{object.original_price }}</strike>
+                    {{ object.discounted_price }}
+                    {% else %}
+                    {{ object.original_price }}
+
+                    {% endif %}
+
+                </button>
+                <a class="btn btn-success mt-3" href="{{object.get_add_to_cart_url }}">Add to Cart</a>
+            </center>
+        </div>
+    </div>
+</div>
+{% endblock %}

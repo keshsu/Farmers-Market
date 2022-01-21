@@ -1,0 +1,167 @@
+{% extends 'adminApp/basic.html' %}
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+  {% block body %}
+  <!-- Page wrapper  -->
+  <div class="page-wrapper">
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+      <!-- Start Page Content -->
+      <div class="card card-outline-primary">
+        <div class="card-header">
+          <h4 class="m-b-0 text-white">Add Banner</h4>
+        </div>
+
+        <div
+          class="alert alert-warning alert-dismissible fade show mt-3"
+          role="alert"
+        >
+          Please note that only one row (initial) will get displayed. Delete
+          other block accordingly!!
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-body">
+              <hr />
+              <div class="row p-t-20">
+                <!--/span-->
+
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row p-t-20">
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Big Image</label>
+                    <input
+                      type="file"
+                      name="img"
+                      id="lastName"
+                      class="form-control form-control-danger"
+                      placeholder="12n"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Small Image</label>
+                    <input
+                      type="file"
+                      name="img2"
+                      id="lastName"
+                      class="form-control form-control-danger"
+                      placeholder="12n"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Heading</label>
+                    <input
+                      type="text"
+                      name="heading"
+                      id="lastName"
+                      class="form-control form-control-danger"
+                      placeholder="12n"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group has-danger">
+                    <label class="control-label">First Paragraph</label>
+                    <input
+                      type="text"
+                      name="par_one"
+                      id="lastName"
+                      class="form-control form-control-danger"
+                      placeholder="12n"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group has-danger">
+                    <label class="control-label">Second Paragraph</label>
+                    <input
+                      type="text"
+                      name="par_two"
+                      id="lastName"
+                      class="form-control form-control-danger"
+                      placeholder="12n"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!--/row-->
+              <!--/span-->
+            </div>
+            <div class="form-actions">
+              <input
+                type="submit"
+                name="submit"
+                class="btn btn-success"
+                value="save"
+              />
+            </div>
+          </form>
+        </div>
+        <table id="myTable" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Heading</th>
+              <th>Image One</th>
+              <th>Image Two</th>
+              <th>First Par</th>
+              <th>Second Par</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a in all %}
+            <tr>
+              <td>{{a.heading}}</td>
+              <td>
+                <img
+                  src="/media/{{a.bigimage}}"
+                  style="height: 100px; width: 100px"
+                />
+              </td>
+              <td>
+                <img
+                  src="/media/{{a.smallimage}}"
+                  style="height: 100px; width: 100px"
+                />
+              </td>
+              <td>{{a.par_one}}</td>
+              <td>{{a.par_two}}</td>
+
+              <td>
+                <a href="{% url 'deleteindexpageabout' a.id %}"
+                  ><button
+                    class="btn btn-danger btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                    title="Delete Order"
+                  >
+                    <i class="fa fa-trash"></i></button
+                ></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- End PAge Content -->
+</div>
+<!-- End Container fluid  -->
+{% endblock body %}

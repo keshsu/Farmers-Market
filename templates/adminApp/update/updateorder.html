@@ -1,0 +1,40 @@
+{% load static %}
+<link href="{% static 'adminApp/css/lib/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="{% static 'adminApp/css/helper.css' %}" rel="stylesheet">
+<link href="{% static 'adminApp/css/style.css' %}" rel="stylesheet">
+<div class="container text-center">
+
+    <form name="updateticket" id="updatecomplaint" method="post" class="my-5">
+        {% csrf_token %}
+        <h3 class="py-3 font-weight-bold">Order Details Update</h3>
+        <table cellspacing="0" cellpadding="0" class="table table-bordered table-striped dataTable">
+            <tr>
+                <td><b>Order Id</b></td>
+                <td>{{o.id}}</td>
+            </tr>
+            <tr>
+                <td><b>Order By</b></td>
+                <td>{{o.user}}</td>
+            </tr>
+            <tr>
+                <td><b>Status</b></td>
+                <td><select name="status" required="required" class="form-control">
+                        <option value="">Select Status</option>
+                        <option value="ontheway">On the way</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="rejected">Rejected</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td><b>Remark</b></td>
+                <td><textarea name="remarks" cols="50" rows="4" required="required"></textarea></td>
+            </tr>
+            <tr>
+                <td><b>Action</b></td>
+                <td><input type="submit" name="update" class="btn btn-primary" value="Submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,120 @@
+{% extends 'adminApp/basic.html' %}
+<div id="main-wrapper">
+    {% block body %}
+    <!-- Page wrapper  -->
+    <div class="page-wrapper">
+        <!-- Container fluid  -->
+        <div class="container-fluid">
+            <!-- Start Page Content -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-outline-primary">
+                        <div class="card-header">
+                            <h4 class="m-b-0 text-white">User Order</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="my-5">
+                                <tr>
+                                    <th>User Name</th>
+                                    <th class="px-3">:</th>
+                                    <td class="text-left">{{or.user}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ordered At</th>
+                                    <th class="px-3">:</th>
+                                    <td class="text-left">{{or.ordered_date}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ordered Location :</th>
+                                    <th class="px-3">:</th>
+                                    <td class="text-left">{{or.address}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Contact</th>
+                                    <th class="px-3">:</th>
+                                    <td class="text-left">{{or.phone}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <th class="px-3">:</th>
+                                    <td class="text-left">{% if or.status == "Pending" %}
+                                        <span class="badge badge-primary p-1">{{or.status}}</span>
+                                        {% elif or.status == "rejected" %}
+                                        <span class="badge badge-danger p-1">{{or.status}}</span>
+                                        {% elif or.status == "ontheway" %}
+                                        <span class="badge badge-info p-1">{{or.status}}</span>
+                                        {% elif or.status == "delivered" %}
+                                        <span class="badge badge-success p-1">{{or.status}}</span>
+                                        {% else %}
+                                        <span class="badge badge-secondary p-1">Undefined</span>
+                                        {% endif %}
+
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="tablem-t-40">
+                                <table id="myTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for oi in ois %}
+                                        <tr>
+                                            <td>{{oi.product.dish_name}}</td>
+                                            <td>{{oi.quantity}}</td>
+                                            <td>{{oi.product.price}}</td>
+                                            <td>{% widthratio oi.product.price 1 oi.quantity %}</td>
+                                        </tr>
+                                        {% endfor %}
+
+                                        <tr>
+                                            <th colspan="2">Total <small>(Excluding delivery charge)</th>
+                                            <th></th>
+                                            <th class="text-right">NPR {{or.total}}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">Delivery Charge</th>
+                                            <th></th>
+                                            <th class="text-right">NPR {{or.delivery_charge}}</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2"><strong>Grand Total</strong></th>
+                                            <th></th>
+                                            <th class="text-right">NPR {{ft}}</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="action_wrapper d-inline-block my-3">
+                                <a href="{% url 'updateOrder' or.id %}" title="Update order"
+                                    class="btn btn-primary btn-flat btn-addon btn-xs m-b-10"><i
+                                        class="fa fa-save fa-lg py-1"></i> Update</a>
+
+                                <a href="{% url 'deleteOrder' or.id %}"
+                                    class="btn btn-danger btn-flat btn-addon btn-xs m-b-10" title="Delete"><i
+                                        class="fa fa-trash-o" style="font-size:16px"></i> Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End PAge Content -->
+</div>
+
+<!-- End Container fluid  -->
+{% endblock body %}

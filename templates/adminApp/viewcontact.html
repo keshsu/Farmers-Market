@@ -1,0 +1,50 @@
+{% extends 'mainapp/basic.html' %} {% block title %}Summary{% endblock title %}
+{% block dynamiccart %} {{cartItem}}{%endblock dynamiccart %} {% block body %}
+<div class="page-wrapper">
+  <!-- Container fluid  -->
+  <div class="container-fluid">
+    <!-- Start Page Content -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-outline-primary">
+          <div class="card-header">
+            <h4 class="m-b-0 text-white">Contact Message</h4>
+          </div>
+          <div class="card-body">
+            <table class="mt-5">
+              <tr>
+                <th>User Name</th>
+                <th class="px-3">:</th>
+                <td class="text-left">{{contact.name}}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <th class="px-3">:</th>
+                <td class="text-left">{{contact.email}}</td>
+              </tr>
+              <tr>
+                <th>Subject</th>
+                <th class="px-3">:</th>
+                <td class="text-left">{{contact.subject}}</td>
+              </tr>
+              <tr>
+                <th>Message</th>
+                <th class="px-3">:</th>
+                <td class="text-left">{{contact.message}}</td>
+              </tr>
+            </table>
+            <div class="action_wrapper d-inline-block my-3">
+              <a
+                href="{% url 'deleteContact' contact.id %}"
+                class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"
+                title="Delete"
+                ><i class="fa fa-trash-o" style="font-size: 16px"></i> Delete</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

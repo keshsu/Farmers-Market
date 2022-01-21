@@ -1,0 +1,140 @@
+{% extends 'adminApp/basic.html' %}
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+  {% block body %}
+  <!-- Page wrapper  -->
+  <div class="page-wrapper">
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+      <!-- Start Page Content -->
+      <div class="row">
+        <div class="container-fluid">
+          <!-- Start Page Content -->
+
+          <div class="col-lg-12">
+            <div class="card card-outline-primary">
+              <div class="card-header">
+                <h4 class="m-b-0 text-white">Update Category</h4>
+              </div>
+              <div class="card-body">
+                {% if messages %} {% for message in messages %} {{message}} {%endfor %} {% endif %}
+
+                <form action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-body">
+                    <hr />
+                    <div class="row p-t-20">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="control-label">Category Name</label>
+                          <input
+                            type="text"
+                            name="category_name"
+                            class="form-control"
+                            placeholder="Category Name"
+                            value="{{category.category_name}}"
+                          />
+                        </div>
+                      </div>
+                      <!--/span-->
+                    </div>
+
+                    <div class="row p-t-20">
+                      <!--/span-->
+                      {% if category.image %}
+                      <div class="col-12">
+                        <div class="form-group has-danger">
+                          <label class="control-label">Current Image</label>
+                          <br>
+                          <img
+                            src="/media/{{category.image}}"
+                            alt="Product Image"
+                            class="w-25"
+                          />
+                        </div>
+                      </div>
+                      {% endif %}
+                      <div class="col-md-6">
+                        <div class="form-group has-danger">
+                          <label class="control-label"
+                            >Image <small>(Size: 500px X 500px ) </small></label
+                          >
+                          <input
+                            type="file"
+                            name="img"
+                            id="image"
+                            accept="Image/*"
+                            class="form-control form-control-danger"
+                            placeholder="12n"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="control-label"
+                          >Featured Category
+                          <small
+                            >(check for the index display category )
+                          </small></label
+                        >
+                        <br />
+                        <div class="form-check-inline has-danger pt-2">
+                          <div class="form-check">
+                            <input
+                              type="radio"
+                              value="1"
+                              id="featured_true"
+                              name="featured"
+                              {%
+                              if
+                              category.featured
+                              %}checked="checked"
+                              {%
+                              endif
+                              %}
+                            />
+                            <label for="featured_true">Yes</label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              type="radio"
+                              value="0"
+                              id="featured_false"
+                              name="featured"
+                              {%
+                              if
+                              not
+                              category.featured
+                              %}
+                              checked="checked"
+                              {%
+                              endif
+                              %}
+                            />
+                            <label for="featured_false">No</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                    <input
+                      type="submit"
+                      name="submit"
+                      class="btn btn-success"
+                      value="save"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End PAge Content -->
+      </div>
+      <!-- End Container fluid  -->
+    </div>
+    <!-- End Page wrapper  -->
+  </div>
+  <!--End Main wrapper  -->
+  {% endblock body %}
+</div>

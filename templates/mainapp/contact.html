@@ -1,0 +1,88 @@
+<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+{% extends 'mainapp/basic.html' %}
+{%block title%} Contact {%endblock title %}
+{% block dynamiccart %}{{cartItems}}{% endblock dynamiccart %}
+{% block body %}
+<!-- bradcam_area  -->
+<div class="bradcam_area slider_bg_3"   style="background-image: url({{ci.image.url}});">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Contact Us</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+<!-- ================ contact section start ================= -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-form-wrapper p-4 rounded bg-white">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="contact-title">Get in Touch</h2>
+                </div>
+                <div class="col-lg-8">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input class="form-control valid" name="name" id="name" type="text"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'"
+                                placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control valid" name="email" id="email" type="email"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"
+                                placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="subject" id="subject" type="text"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'"
+                                placeholder="Enter Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Enter Message'" placeholder="Enter Message.." cols="30"
+                                rows="5"></textarea>
+                        </div>
+                        <input type="submit" value="Submit" class="mt-4 button button-contactForm boxed-btn">
+                    </form>
+                </div>
+                <div class="col-lg-4 pl-3">
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-home"></i></span>
+                        <div class="media-body">
+                            <h3>New Baneshwor, kathmadu.</h3>
+                            <p>Beside to Samaj Dental</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                        <div class="media-body">
+                            <h3>+977-98401010101</h3>
+                            <p>Mon to Fri 9am to 6pm</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-email"></i></span>
+                        <div class="media-body">
+                            <h3>info@example.com</h3>
+                            <p>Send us your query anytime!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-none d-sm-block mb-5 pb-4 mt-5">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14126.644021609975!2d85.3237182!3d27.7277511!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xaf66447d9243055b!2sEmbassy%20of%20Japan!5e0!3m2!1sen!2snp!4v1601711295193!5m2!1sen!2snp" 
+            width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            
+        </div>
+    </div>
+</section>
+<!-- ================ contact section end ================= -->
+{% endblock body %}

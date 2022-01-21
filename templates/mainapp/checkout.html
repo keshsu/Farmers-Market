@@ -1,0 +1,106 @@
+{% load static %}
+<link rel="stylesheet" href="{% static '/mainapp/css/bootstrap.min.css' %}">
+
+<div class="col-lg-12">
+    <div class="box-element">
+        <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+        <hr>
+        <h3 class="text-center">Order Summary</h3>
+        <hr>
+        <table style="margin-top:20px;" class="table table-dark text-center">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td><img src="media/{{item.product.image}}" style="width:120px;height:90px;"></td>
+                    <td>{{item.product.dish_name}}</td>
+                    <td>{{item.product.price}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.get_total}}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>{{order.get_cart_items}}</td>
+                <td>{{order.get_cart_total|floatformat:2}}</td>
+            </tfoot>
+        </table>
+
+
+    </div>
+</div>
+</div>
+<div class="container mb-3">
+  <hr>
+  <h1>Please fill the below form</h1>
+  <hr>
+  <form action="confirm" method="POST" class="form bg-light p-4">
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="d-block">Delivery</label>
+      <input type="radio" name="areatodeliver" id="insidevalley" required />
+      <label for="insidevalley">Inside Valley </label>
+      <input type="radio" name="areatodeliver" id="outsidevalley" />
+      <label for="outsidevalley">Outside Valley</label>
+    </div>
+    <div class="form-group">
+      <textarea name="items" style="display: none">{{items}}</textarea>
+    </div>
+    <div class="form-group">
+      <textarea name="order" style="display: none">{{order}}</textarea>
+    </div>
+    <div class="form-group">
+      <textarea name="delivery" id="delivery" style="display: none"></textarea>
+    </div>
+    <div class="form-group">
+      <label for=" name">Name:</label>
+      <input type="text" value="{{user}}" maxlength="50" id="name" name="name" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" maxlength="50" id="email" name="email" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="num">Phone Number</label>
+      <input type="text" maxlength="50" id="num" name="number" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" maxlength="50" id="address" name="address" class="form-control" required />
+    </div>
+    <div class="form-group text-center">
+      <button type="submit" class="mt-5 btn btn-mastery my-3 px-5" onclick="return ask()">
+        Confirm Order
+      </button>
+    </div>
+  </form>
+</div>
+<div class="container text-center my-5">
+    <h3>Shipping address</h3>
+
+    <form action="#" method="POST" class="form">
+        <label for="name"></label>
+        <input type="text" value="{{user}}" maxlength="20" id="name" name="name" placeholder="Name"
+            class="form-control">
+        <label for="email"></label>
+        <input type="email" maxlength="20" id="email" name="email" placeholder="Email" class="form-control">
+        <label for="num"></label>
+        <input type="text" maxlength="20" id="num" name="number" placeholder="Number" class="form-control">
+        <center>
+            <button type="submit" class="mt-5 btn btn-danger">Confirm Order</button>
+        </center>
+    </form>
+</div>

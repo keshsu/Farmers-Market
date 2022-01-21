@@ -1,0 +1,288 @@
+<style>
+  .productdisplayblock {
+    display: none;
+  }
+
+  .productdisplayblock:nth-child(1),
+  .productdisplayblock:nth-child(2),
+  .productdisplayblock:nth-child(3),
+  .productdisplayblock:nth-child(4) {
+    display: inline-block;
+  }
+</style>
+{% extends 'mainapp/basic.html' %} {%block title%} Products {%endblock title %}
+{% block dynamiccart %}{{cartItems}}{% endblock dynamiccart %} {% block body %}
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_2">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text text-center">
+          <h3>Your Cart Summary</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ bradcam_area  -->
+<div class="shopping-cart">
+  <div class="container m-t-30">
+    <div class="widget clearfix">
+      <div class="widget-body">
+        <form method="post" action="#">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="cart-total py-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Item Name</th>
+                      <th>Vendor</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <input type="hidden" id="forcalconly" name="forcalonly" />
+                    {% for key,value in request.session.cart.items %}
+                    <tr>
+                      <td class="image" data-title="No">
+                        <img
+                          src="{{value.image}}"
+                          alt="{{value.name}}"
+                          style="width: 100px; height: 100px; object-fit: cover"
+                        />
+                      </td>
+                      <td class="product-des" data-title="Description">
+                        <p class="product-name">
+                          <a href="#">{{value.name}}</a>
+                        </p>
+                        <p class="product-des">
+                          {{value.description | safe | truncatechars:100}}
+                        </p>
+                      </td>
+                      <td class="price" data-title="Price">
+                        <span>
+                          {% if value.discounted_price %} NPR.
+                          <span id="price{{value.product_id}}"
+                            >{{value.discounted_price}}</span
+                          >
+                          {% else %}NPR.
+                          <span id="price{{value.product_id}}"
+                            >{{value.price}}</span
+                          >
+                          {% endif %}</span
+                        >
+                      </td>
+                      <td class="qty" data-title="Qty">
+                        <!-- Input Order -->
+                        <div class="input-group">
+                          <div class="button minus">
+                            <button
+                              type="button"
+                              class="btn btn-primary btn-number"
+                              data-type="minus"
+                              data-field="quantity{{value.product_id}}"
+                              onclick="decrementCart('{{value.product_id}}')"
+                            >
+                              <i class="ti-minus"></i>
+                            </button>
+                          </div>
+                          <input
+                            id="inputquantity{{value.product_id}}"
+                            name="quantity{{value.product_id}}"
+                            value="{{value.quantity}}"
+                            size="2"
+                            type="text"
+                            class="input-number"
+                            data-min="1"
+                            data-max="100"
+                          />
+                          <input
+                            type="hidden"
+                            name="value_id"
+                            value="{{value.product_id}}"
+                          />
+                          <div class="button plus">
+                            <button
+                              type="button"
+                              class="btn btn-primary btn-number"
+                              data-type="plus"
+                              data-field="quantity{{value.product_id}}"
+                              onclick="incrementCart('{{value.product_id}}')"
+                            >
+                              <i class="ti-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <!--/ End Input Order -->
+                      </td>
+
+                      <td class="total-amount" data-title="Total">
+                        NPR
+                        <span id="item-total{{value.product_id}}"
+                          >{{value.subtotal}}</span
+                        >
+                      </td>
+
+                      <td class="action" data-title="Remove">
+                        <a
+                          href="#"
+                          onclick="if(confirm('Do you want to remove this item from cart?'))removefromCart('{{value.product_id}}')"
+                          class="rm-btn"
+                          title="Remove item from cart"
+                          ><i class="ti-trash remove-icon"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td>
+                        <div class="cart-head title-head">
+                          <h2 class="cart-title main-title">
+                            No Items added to Cart
+                          </h2>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-12">
+              {% if request.session.cart.items %}
+
+              <a
+                href="/cart/checkout"
+                class="btn cartitem-btn animate pull-right"
+              >
+                <div class="checkout">Proceed to Checkout</div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  width="30px"
+                  height="18px"
+                  viewBox="0 0 30 18"
+                  enable-background="new 0 0 30 18"
+                  xml:space="preserve"
+                >
+                  <path
+                    class="handle"
+                    d="M20.305,16.212c-0.407,0.409-0.407,1.071,0,1.479s1.068,0.408,1.476,0l7.914-7.952c0.408-0.409,0.408-1.071,0-1.481
+                    l-7.914-7.952c-0.407-0.409-1.068-0.409-1.476,0s-0.407,1.071,0,1.48l7.185,7.221L20.305,16.212z"
+                  ></path>
+                  <path
+                    class="bar"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M1,8h28.001c0.551,0,1,0.448,1,1c0,0.553-0.449,1-1,1H1c-0.553,0-1-0.447-1-1
+                    C0,8.448,0.447,8,1,8z"
+                  ></path>
+                </svg>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for key,value in request.session.cart.items %}
+<script>
+  $(document).ready(function () {
+    loadItemsInCart();
+    if ($("#inputquantity{{value.product_id}}").val() < 1) {
+      $(".btnminus").removeAttr("disabled");
+    }
+  });
+
+  itemTotalCalc({{value.product_id}});
+
+
+  function itemTotalCalc(prod_id) {
+    var prc = parseInt($(`#price${prod_id}`).text());
+    var qty = parseInt($(`#inputquantity${prod_id}`).val());
+    var tot = prc * qty;
+    $("#item-total{{value.product_id}}").text(tot);
+  }
+</script>
+{% endfor %}
+
+<script>
+    function decrementCart(id) {
+      fetch("/cart/item_decrement/" + id)
+        .then(function (resp) {
+          return resp.json();
+        })
+        .then(function (data) {
+          loadCart();
+          loadItemsInCart();
+          itemTotalCalc(id);
+        });
+    }
+
+    function incrementCart(id) {
+      fetch("/cart/item_increment/" + id)
+        .then(function (resp) {
+          return resp.json();
+        })
+        .then(function (data) {
+          loadCart();
+          loadItemsInCart();
+          itemTotalCalc(id);
+        });
+    }
+
+    function removefromCart(id) {
+      fetch("/cart/item_clear/" + id)
+        .then(function (resp) {
+          return resp.json();
+        })
+        .then(function (data) {
+          loadCart();
+          loadItemsInCart();
+          itemTotalCalc(id);
+          window.load();
+        });
+    }
+
+    function loadItemsInCart() {
+      var total_sum = 0;
+      itemTotalCalc();
+
+      fetch("/cart/cartdetail/")
+        .then(function (resp) {
+          return resp.json();
+        })
+
+        .then(function (data) {
+          $("#itemcarts tr").remove();
+
+          Object.keys(data.allcart).forEach((element) => {
+            total_sum +=
+              data.allcart[element].quantity * data.allcart[element].price;
+
+            data.allcart[element] = {
+              ...data.allcart[element],
+              subtotal:
+                data.allcart[element].quantity * data.allcart[element].price,
+            };
+          });
+          $("#inject-cart-total").html(total_sum);
+        });
+    }
+</script>
+
+<script>
+  function ask() {
+    return confirm("Do you want to place the order ? ");
+  }
+</script>
+{% endblock %}

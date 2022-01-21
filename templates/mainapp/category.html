@@ -1,0 +1,150 @@
+{% extends 'mainapp/basic.html' %}
+{%block title%} Products {%endblock title %}
+{% block dynamiccart %}{{cartItems}}{% endblock dynamiccart %}
+{% block body %}
+
+<!-- bradcam_area  -->
+<div
+  class="bradcam_area bradcam_bg_2"
+  style="background-image: url({{ci.image.url}});"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text">
+          <h3>Our Products</h3>
+          <p>Shop your products for the better life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ bradcam_area  -->
+
+<div class="container mt-5">
+    <div id="category d-inline-block">
+        <span>Category</span><i class="fa fa-chevron-right fa-sm px-3"></i>
+        <span style="color:#a4a4a4">{{vendor}}</span>
+    </div>
+</div>
+<!-- menu start -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-lg-2 col-md-2">
+      <div class="delicious_area h-100">
+        <div id="filter-options" class="filter-options">
+          <nav class="nav">
+              <span class="active">All Products</span>
+              <span class="active">Vendors <i class="ti-angle-down"> </i></span>
+              <ul class="list-unstyled cat-options">
+                  {% for v in vendors %}
+                  <li><a href="{% url 'vendor' v.id %}">{{ v.name | title}} </a></li>
+                  {% endfor%}
+              </ul>
+              <span class="active">Categories <i class="ti-angle-down"> </i></span>
+              <ul class="list-unstyled cat-options">
+                  {% for c in category %}
+                  <li><a href="{% url 'category' c.id %}">{{ c.category_name | title}} </a></li>
+                  {% endfor%}
+              </ul>
+          </nav>
+        </div>
+      <script>
+        $(window).on("scroll", function () {
+          var scroll = $(window).scrollTop();
+          if (scroll > 343 && $("#filter-options").offset().top) {
+            $("#filter-options").addClass("stick");
+          } else {
+            $("#filter-options").removeClass("stick");
+          }
+        });
+      </script>
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-10 col-md-10">
+      <div class="delicious_area pt-2">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12 overflow-hidden text-center">
+                      <div class="section_title text-center mb-75">
+                          <h3>{{vendor}}</h3>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  {% for product in items %}
+                  <div
+                    class="productdisplayblock col-sm-12 col-lg-6 col-xl-4 col-md-4 mb-4"
+                  >
+                    <!-- This loop is giving all product form particular vendor, it is limited through css productdisplayblock class,please refer to static/css/styles.css if you want to change anything regarding this.-->
+                    <div class="single_delicious">
+                      <div class="thumb">
+                        <img src="/media/{{product.image}}" alt="" />
+                      </div>
+
+                      <div class="single_delicious_content">
+                        <div class="info">
+                          <a
+                            href="{% url 'vendor' product.vendor.id %}"
+                            class="vendor-tag"
+                            ><i class="fa fa-tag pr-1"></i>{{ product.vendor|title }}</a
+                          >
+                          <h3>{{product.dish_name}}</h3>
+                        </div>
+                        <div class="price-button-wrapper">
+                          <span>Rs.{{product.price}}</span>
+                          {% if product.outofstock %}
+                          <button class="boxed-btn outof-stock-btn">
+                            Out of Stock
+                          </button>
+                          {% else %}
+                          <button
+                            class="boxed-btn rounded"
+                            onclick="addToCart('{{product.id}}','yes');"
+                          >
+                            Add<i class="fa fa-shopping-cart"></i>
+                          </button>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+              </div>
+          </div>
+          <div class="container text-center">
+            <div class="pagination_links">
+                <ul class="list-unstyled d-inline" id="paginations">
+                    {% if page_obj.has_previous %}
+                    <li class="m-1">
+                    <a
+                        href="?page={{page_obj.previous_page_number}}"
+                        class="prev btn-mastery form-control"
+                        >Prev</a
+                    >
+                    </li>
+                    {% endif %} {% for i in paginator.page_range %}
+                    <li
+                    class="block no-{{i}} m-1 {% if page_num == i %}active-page{% endif %}"
+                    >
+                    <a href="?page={{ i }}" class="form-control">{{i}}</a>
+                    </li>
+                    {% endfor %} {% if page_obj.has_next %}
+                    <li class="m-1">
+                    <a
+                        href="?page={{page_obj.next_page_number}}"
+                        class="next btn-mastery form-control"
+                        >Next</a
+                    >
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,17 @@
+Hi there, You just received a order request by User, "{{user}}".
+
+Name : {{name}}
+User Email : {{email}}
+User Location : {{address}}
+User Phone : {{phone}}
+---------------------------------------
+ORDER FROM USER
+
+ITEMS : {% for item in items %}
+
+
+{{item.quantity}} of {{item.product.dish_name }} @ {{item.product.price}} each = Rs.{{item.get_total}} ( Sold through
+Vendor : {{item.product.vendor.name}})
+{% endfor %}
+---------------------------------------
+Amount Payable = Rs.{{finalAmount}} (Delivery Charge Included)
